@@ -43,7 +43,7 @@ namespace sudokuBackEnd
                         .AllowAnyHeader();
              }));
             services.AddDbContext<SudokuContext>(options =>
-                options.UseSqlServer(Configuration.GetConnectionString("ContainerConnection"),
+                options.UseSqlServer(Configuration.GetConnectionString("DefaultConnection"),
                 b=>b.MigrationsAssembly(typeof(SudokuContext).Assembly.FullName)));
 
             //swagger
