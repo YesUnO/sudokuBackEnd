@@ -20,4 +20,4 @@ COPY --from=publish /app/publish .
 ENTRYPOINT ["dotnet", "sudokuBackEnd.dll"]
 
 FROM gcr.io/google.com/cloudsdktool/cloud-sdk as cloud
-RUN cloud deploy final
+RUN cloud info
