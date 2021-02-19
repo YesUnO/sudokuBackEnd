@@ -87,6 +87,8 @@ namespace sudokuBackEnd
 
             app.UseRouting();
 
+            app.UseHttpsRedirection();
+
             //oAuth
             app.UseAuthentication();
             app.UseAuthorization();
