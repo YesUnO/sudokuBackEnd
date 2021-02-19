@@ -92,12 +92,12 @@ namespace sudokuBackEnd.Controllers
             return authenticateResponse;
         }
 
-        [Route("CreateGoogle")]
+        [Route("CreateGoogle/{token}")]
         [HttpGet]
-        public async Task<ActionResult<AuthenticateResponse>> PostGoogleUser()
+        public async Task<ActionResult<AuthenticateResponse>> GetGoogleUser(string token)
         {
-            var recievedToken = Request.Headers["Authorization"].ToString().Split(" ");
-            var googleToken = GoogleJsonWebSignature.ValidateAsync(recievedToken[1], new GoogleJsonWebSignature.ValidationSettings()).Result;
+            //var recievedToken = Request.Headers["Authorization"].ToString().Split(" ");
+            var googleToken = GoogleJsonWebSignature.ValidateAsync(token, new GoogleJsonWebSignature.ValidationSettings()).Result;
 
             var model = new CreateGoogleUserRequest { Name = googleToken.Name, Sub = googleToken.Subject };
             var authenticateResponse = await _userService.CreateGoogleUser(model);

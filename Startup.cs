@@ -39,7 +39,6 @@ namespace sudokuBackEnd
             services.AddCors(x => x.AddPolicy("MyPolicy", builder =>
              {
                  builder.AllowAnyOrigin()
-                        .WithOrigins("http://saras-sudoku.com")
                         .AllowAnyMethod()
                         .AllowAnyHeader();
              }));
