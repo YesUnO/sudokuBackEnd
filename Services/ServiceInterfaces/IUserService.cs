@@ -13,7 +13,7 @@ namespace sudokuBackEnd.Services.ServiceInterfaces
         Task<AuthenticateResponse> Authenticate(AuthenticateRequest model);
         Task<AuthenticateResponse> AuthenticateGoogle();
         Task<AuthenticateResponse> CreateUser(CreateUserRequest model);
-        Task<AuthenticateResponse> CreateGoogleUser(CreateGoogleUserRequest model);
+        Task<AuthenticateResponse> CreateGoogleUser(CreateGoogleUserModel model);
         Task<IEnumerable<User>> GetLeaderBoard();
         Task<UserExistsResponse> UserExists(string name);
     }

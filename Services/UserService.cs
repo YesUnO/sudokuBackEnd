@@ -47,12 +47,13 @@ namespace sudokuBackEnd.Services
             throw new NotImplementedException();
         }
 
-        public async Task<AuthenticateResponse> CreateGoogleUser(CreateGoogleUserRequest model)
+        public async Task<AuthenticateResponse> CreateGoogleUser(CreateGoogleUserModel model)
         {
             var user = _context.User.FirstOrDefaultAsync(x => x.AuthId == model.Sub).Result;
             if (user == null)
             {
                 user = _context.User.Add(new DB.Entity.User { AuthId = model.Sub, Name = model.Name }).Entity;
+                await _context.SaveChangesAsync();
             }
             var apiUser = DBToApiModel.ToApiModel(user);
             var token = generateJwtToken(user);
