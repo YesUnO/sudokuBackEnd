@@ -7,6 +7,7 @@ using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
+using sudokuBackEnd.APICore;
 using sudokuBackEnd.APIModel;
 using sudokuBackEnd.DB.Data;
 using sudokuBackEnd.DB.Entity;
@@ -16,7 +17,7 @@ namespace sudokuBackEnd.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
-    public class UsersController : ControllerBase
+    public class UsersController : RestApiController
     {
         private readonly SudokuContext _context;
         private IUserService _userService;
@@ -132,6 +133,14 @@ namespace sudokuBackEnd.Controllers
         {
             var authenticateResponse = await _userService.AuthenticateGoogle();
             return authenticateResponse;
+        }
+
+        [Authorize]
+        [HttpPut]
+        public async Task<ActionResult> ChangePassword(NewPasswordRequest model)
+        {
+            await _userService.ChangePassword(model.NewPassword,LoggedInUser);
+            return Ok();
         }
 
         // DELETE: api/Users/5

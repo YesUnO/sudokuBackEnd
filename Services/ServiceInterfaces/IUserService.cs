@@ -16,5 +16,6 @@ namespace sudokuBackEnd.Services.ServiceInterfaces
         Task<AuthenticateResponse> CreateGoogleUser(CreateGoogleUserModel model);
         Task<IEnumerable<User>> GetLeaderBoard();
         Task<UserExistsResponse> UserExists(string name);
+        Task ChangePassword(string newPassword, int loggedInUser);
     }
 }

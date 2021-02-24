@@ -89,5 +89,12 @@ namespace sudokuBackEnd.Services
             var token = tokenHandler.CreateToken(tokenDescriptor);
             return tokenHandler.WriteToken(token);
         }
+
+        public async Task ChangePassword(string newPassword, int loggedInUser)
+        {
+            var user = _context.User.FirstOrDefaultAsync(x => x.Id == loggedInUser).Result;
+            user.Password = newPassword;
+            await _context.SaveChangesAsync();
+        }
     }
 }
